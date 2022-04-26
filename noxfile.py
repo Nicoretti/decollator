@@ -4,7 +4,7 @@ from shutil import rmtree
 
 import nox
 
-BASEPATH = Path(__file__).parent.resolve()
+BASEPATH = Path(__file__).parent
 DOCS = BASEPATH / "docs"
 SRC_DIRECTORY = DOCS
 BUILD_DIRECTORY = DOCS / "_build"
