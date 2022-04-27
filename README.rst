@@ -1,12 +1,6 @@
 decollator
 =================================
 
-
-
-
-
-
-
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 
@@ -16,7 +10,7 @@ decollator
 .. image:: https://img.shields.io/badge/docs-available-blue.svg
     :target: https://nicoretti.github.io/decollator/
 
-.. image:: https://img.shields.io/badge/pypi%20package-unavailable-red.svg
+.. image:: https://img.shields.io/pypi/v/decollator
      :target: https://pypi.org/project/decollator/
      :alt: PyPI Version
 
