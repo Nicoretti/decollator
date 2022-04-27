@@ -41,7 +41,8 @@ include = [
 ]
 
 [tool.poetry.scripts]
-prysk = "decollator:cli.main"
+git-changelog = 'decollator.cli:main'
+
 
 [tool.poetry.dependencies]
 python = "^3.7"
