@@ -52,7 +52,7 @@ tomli-w = "^1.0.0"
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
 coverage = "^6.3.1"
-furo = "^2022.1.2"
+furo = "^2022.6.4"
 isort = "^5.10.1"
 mypy = "^0.942"
 nox = "^2022.1.7"
