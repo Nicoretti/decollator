@@ -1,6 +1,9 @@
 import sys
 from pathlib import Path
-from subprocess import PIPE, run
+from subprocess import (
+    PIPE,
+    run,
+)
 
 CURRENT_DIR = Path(__file__).parent.resolve()
 sys.path.insert(0, f"{CURRENT_DIR.parent}")
