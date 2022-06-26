@@ -41,6 +41,7 @@ include = [
 ]
 
 [tool.poetry.scripts]
+decolator = 'decolator.cli.main'
 git-changelog = 'decollator.cli:main'
 
 
@@ -48,6 +49,7 @@ git-changelog = 'decollator.cli:main'
 python = "^3.7"
 tomli = "^2.0.1"
 tomli-w = "^1.0.0"
+click = "^8.1.3"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
@@ -61,7 +63,7 @@ prysk = "^0.11.0"
 pylint = "^2.12.2"
 pytest = "^7.0.1"
 pyupgrade = "^2.32.0"
-Sphinx = "^4.4.0"
+Sphinx = "^5.0.2"
 
 [tool.coverage.run]
 source = [
@@ -83,5 +85,15 @@ line-length = 88
 verbose = true
 include = "\\.pyi?$"
 
-[too.isort]
+[tool.isort]
 profile = "black"
+force_grid_wrap = 2
+
+[mypy]
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
+
+[tool.mypy]
+files = [
+    'noxfile.py',
+    'src/**/*.py',
+]
