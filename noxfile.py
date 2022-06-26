@@ -107,7 +107,17 @@ def lint(session):
 @nox.session(python=False)
 def typecheck(session):
     """Type check the source code based on the provided type annotations."""
-    session.run("poetry", "run", "python", "-m", "mypy", f"{BASEPATH}")
+    session.run(
+        "poetry",
+        "run",
+        "mypy",
+        "--strict",
+        "--show-error-codes",
+        "--pretty",
+        "--show-column-numbers",
+        "--show-error-context",
+        "--scripts-are-modules",
+    )
 
 
 @nox.session(python=False)
