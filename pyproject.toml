@@ -87,3 +87,5 @@ include = "\\.pyi?$"
 
 [too.isort]
 profile = "black"
+force_grid_wrap = 2
+
