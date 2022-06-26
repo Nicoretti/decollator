@@ -1,11 +1,13 @@
 import pytest
 
-from decollator.cli import FAILURE, SUCCESS
+from decollator.cli import (
+    ExitCode,
+)
 
 
 def test_cli_constant_success():
-    assert SUCCESS == 0
+    assert ExitCode.SUCCESS == 0
 
 
 def test_cli_constant_failure():
-    assert FAILURE == -1
+    assert ExitCode.FAILURE == 1
