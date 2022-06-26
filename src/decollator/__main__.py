@@ -4,4 +4,4 @@ import sys
 from decollator import cli
 
 if __name__ == "__main__":
-    sys.exit(cli.main())
+    cli.main()

@@ -3,6 +3,7 @@ from pathlib import Path
 from shutil import rmtree
 
 import nox
+from nox import Session
 
 BASEPATH = Path(__file__).parent
 DOCS = BASEPATH / "docs"
@@ -17,13 +18,13 @@ nox.options.sessions = [
 
 
 @nox.session(python=False)
-def integration(session):
+def integration(session: Session) -> None:
     """Run all integration tests of this project."""
     session.run("poetry", "run", "python", "-m", "prysk", f"{BASEPATH / 'test'}")
 
 
 @nox.session(python=False)
-def doc(session):
+def doc(session: Session) -> None:
     """
     Generate and open the project documentation.
 
@@ -41,7 +42,7 @@ def doc(session):
         choices={"build", "open", "clean"},
     )
 
-    def _build(s):
+    def _build(s: Session) -> None:
         s.run(
             "poetry",
             "run",
@@ -52,7 +53,7 @@ def doc(session):
             f"{(BUILD_DIRECTORY / 'html').resolve()}",
         )
 
-    def _open(s):
+    def _open(s: Session) -> None:
         if not INDEX_PAGE.exists():
             _build(s)
         s.run(
@@ -63,7 +64,7 @@ def doc(session):
             f"{INDEX_PAGE.resolve()}",
         )
 
-    def _clean(s):
+    def _clean(s: Session) -> None:
         """Remove the build directory."""
         if BUILD_DIRECTORY.exists():
             rmtree(BUILD_DIRECTORY.resolve())
@@ -75,13 +76,13 @@ def doc(session):
 
 
 @nox.session(python=False)
-def ut(session):
+def ut(session: Session) -> None:
     """Run all unit- and doc- tests in this project."""
     session.run("poetry", "run", "python", "-m", "pytest", f"{BASEPATH / 'test'}")
 
 
 @nox.session(python=False)
-def check(session):
+def check(session: Session) -> None:
     """Run code formatters in check mode."""
     session.run(
         "poetry", "run", "python", "-m", "isort", "-v", "--check", f"{BASEPATH}"
@@ -90,14 +91,14 @@ def check(session):
 
 
 @nox.session(python=False)
-def fix(session):
+def fix(session: Session) -> None:
     """Run code formatters in fix mode."""
     session.run("poetry", "run", "python", "-m", "isort", "-v", f"{BASEPATH}")
     session.run("poetry", "run", "python", "-m", "black", f"{BASEPATH}")
 
 
 @nox.session(python=False)
-def lint(session):
+def lint(session: Session) -> None:
     """Lint entire project."""
     session.run(
         "poetry", "run", "python", "-m", "pylint", "--recursive=y", f"{BASEPATH}"
@@ -105,7 +106,7 @@ def lint(session):
 
 
 @nox.session(python=False)
-def typecheck(session):
+def typecheck(session: Session) -> None:
     """Type check the source code based on the provided type annotations."""
     session.run(
         "poetry",
@@ -121,13 +122,13 @@ def typecheck(session):
 
 
 @nox.session(python=False)
-def coverage(session):
+def coverage(session: Session) -> None:
     """Collect code coverage."""
     session.warn("No Coverage Provided | Details: Not Implemented Yet!")
 
 
 @nox.session(python=False)
-def verify(session):
+def verify(session: Session) -> None:
     """Run a full workspace verification."""
     session.notify("check")
     session.notify("ut")

@@ -65,7 +65,7 @@ def _disable_backtrace(func):
     return catch_all
 
 
-def main():
+def main() -> None:
     _main = (
         _disable_backtrace(decollator) if not _is_backtrace_enabled() else decollator
     )

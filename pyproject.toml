@@ -85,7 +85,15 @@ line-length = 88
 verbose = true
 include = "\\.pyi?$"
 
-[too.isort]
+[tool.isort]
 profile = "black"
 force_grid_wrap = 2
 
+[mypy]
+mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
+
+[tool.mypy]
+files = [
+    'noxfile.py',
+    'src/**/*.py',
+]
