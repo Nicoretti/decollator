@@ -1,13 +1,13 @@
 import sys
 from pathlib import Path
-from subprocess import run, PIPE
+from subprocess import PIPE, run
 
 CURRENT_DIR = Path(__file__).parent.resolve()
 sys.path.insert(0, f"{CURRENT_DIR.parent}")
 
 
 def current_version():
-    command = ['poetry', 'version', '-s']
+    command = ["poetry", "version", "-s"]
     result = run(command, stderr=PIPE, stdout=PIPE, check=True)
     return result.stdout.decode().strip()
 
