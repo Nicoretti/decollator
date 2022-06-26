@@ -41,6 +41,7 @@ include = [
 ]
 
 [tool.poetry.scripts]
+decolator = 'decolator.cli.main'
 git-changelog = 'decollator.cli:main'
 
 
@@ -48,6 +49,7 @@ git-changelog = 'decollator.cli:main'
 python = "^3.7"
 tomli = "^2.0.1"
 tomli-w = "^1.0.0"
+click = "^8.1.3"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
