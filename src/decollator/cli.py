@@ -1,7 +1,17 @@
 import os
 import sys
 from enum import IntEnum
-from functools import partial, wraps
+from functools import (
+    partial,
+    wraps,
+)
+from typing import (
+    Any,
+    Callable,
+    Mapping,
+    Optional,
+    Sequence,
+)
 
 import click
 
@@ -26,7 +36,7 @@ class ExitCode(IntEnum):
     default="HEAD",
     required=False,
 )
-def decollator(revision_range):
+def decollator(revision_range: str) -> None:
     """
     Generates a changelog
 
@@ -40,16 +50,18 @@ def decollator(revision_range):
     raise NotImplementedError()
 
 
-def _is_backtrace_enabled():
+def _is_backtrace_enabled() -> bool:
     """Are stack traces enabled"""
     return os.environ.get("PYTHON_BACKTRACE", None) in ["1", "True", "true"]
 
 
-def _disable_backtrace(func):
+def _disable_backtrace(func: Callable[..., None]) -> Callable[..., None]:
     """Decorator to suppress python stack traces"""
 
     @wraps(func)
-    def catch_all(*args, **kwargs):
+    def catch_all(
+        *args: Optional[Sequence[Any]], **kwargs: Optional[Mapping[Any, Any]]
+    ) -> None:
         try:
             func(*args, **kwargs)
         except Exception as ex:
@@ -66,7 +78,7 @@ def _disable_backtrace(func):
 
 
 def main() -> None:
-    _main = (
-        _disable_backtrace(decollator) if not _is_backtrace_enabled() else decollator
+    _main: Callable[..., None] = (
+        _disable_backtrace(decollator) if not _is_backtrace_enabled() else decollator  # type: ignore
     )
     _main()
